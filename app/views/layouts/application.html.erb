@@ -2,12 +2,25 @@
 <html>
 <head>
   <title>YardSard</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,500" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<header>
+  <%= link_to root_path do %><h1 id='site-title'>Yard Sard</h1><% end %>
+  <div class='right-side'>
+    <% if user_signed_in? %>
+      <h2>My Sards</h2>
+    <% else %>
+      <h2><%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></h2>
+    <% end %>
+  </div>
+</header>
+<div id='under-header-padding'></div>
+<p class='notice'><%= notice %></p>
+<p class='alert'><%= alert %></p>
 <%= yield %>
 
 </body>
