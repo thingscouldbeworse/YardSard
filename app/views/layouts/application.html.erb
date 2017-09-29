@@ -12,7 +12,7 @@
   <%= link_to root_path do %><h1 id='site-title'>Yard Sard</h1><% end %>
   <div class='right-side'>
     <% if user_signed_in? %>
-      <h2>My Sards</h2>
+      <h2>My Sards | <%= link_to "My Account", edit_user_registration_path %> | <%= link_to "Log Out", destroy_user_session_path, method: :delete %></h2>
     <% else %>
       <h2><%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></h2>
     <% end %>
@@ -21,7 +21,7 @@
 <div id='under-header-padding'></div>
 <p class='notice'><%= notice %></p>
 <p class='alert'><%= alert %></p>
-<%= yield %>
+<%= content_for?(:main) ? yield(:main) : yield %>
 
 </body>
 </html>

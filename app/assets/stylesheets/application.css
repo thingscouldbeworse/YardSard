@@ -65,3 +65,12 @@ header h2 * {
 #under-header-padding {
   padding: 2em;
 }
+
+#small-center {
+  margin: 0 auto;
+  padding: 3em;
+  border: 2px solid black;
+  width: 50%;
+  min-width: 400px;
+  max-width: 500px;
+}
