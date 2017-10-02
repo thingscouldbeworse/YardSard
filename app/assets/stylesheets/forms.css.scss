@@ -1,0 +1,20 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+form div.field {
+  padding: 0.5em 0;
+}
+
+form div.actions {
+  padding: 1em 0;
+}
+
+form input {
+  margin: 5px 0;
+  padding: 5px;
+}
+
+form input.wide {
+  width: 100%;
+}
