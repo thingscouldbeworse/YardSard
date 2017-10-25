@@ -1,0 +1,35 @@
+<h1>Listing yard_sales</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th>Zip</th>
+      <th>Address</th>
+      <th>Community</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @yard_sales.each do |yard_sale| %>
+      <tr>
+        <td><%= yard_sale.start %></td>
+        <td><%= yard_sale.end %></td>
+        <td><%= yard_sale.zip %></td>
+        <td><%= yard_sale.address %></td>
+        <td><%= yard_sale.community %></td>
+        <td><%= yard_sale.user %></td>
+        <td><%= link_to 'Show', yard_sale %></td>
+        <td><%= link_to 'Edit', edit_yard_sale_path(yard_sale) %></td>
+        <td><%= link_to 'Destroy', yard_sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Yard sale', new_yard_sale_path %>

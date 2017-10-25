@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @yard_sale.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @yard_sale.end %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @yard_sale.zip %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @yard_sale.address %>
+</p>
+
+<p>
+  <strong>Community:</strong>
+  <%= @yard_sale.community %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @yard_sale.user %>
+</p>
+
+<%= link_to 'Edit', edit_yard_sale_path(@yard_sale) %> |
+<%= link_to 'Back', yard_sales_path %>
