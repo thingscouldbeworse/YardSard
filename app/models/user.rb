@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :validatable
 
   validates :name, presence: true
-  validates :pic, url: true
+  validates :pic, url: true, allow_blank: true
 end
