@@ -1,0 +1,17 @@
+table.standard {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    background-color: black;
+    color: white;
+  }
+
+  tr.odd {
+    background-color: white;
+  }
+
+  tr.even {
+    background-color: lightgrey;
+  }
+}

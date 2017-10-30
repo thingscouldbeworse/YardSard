@@ -13,6 +13,14 @@ class YardSale < ActiveRecord::Base
   alias_attribute :start_time, :start
   alias_attribute :end_time, :end
 
+  def start_txt
+    start_time.strftime("%F<br/>%I:%M %p").html_safe
+  end
+
+  def end_txt
+  end_time.strftime("%F<br/>%I:%M %p").html_safe
+  end
+
   private
   
   def end_cannot_be_before_start
