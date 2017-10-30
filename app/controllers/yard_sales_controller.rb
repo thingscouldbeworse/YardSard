@@ -1,11 +1,18 @@
 class YardSalesController < ApplicationController
   before_action :set_yard_sale, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: :user
+
+  layout('small-center', only: [:new, :edit])
 
   respond_to :html
 
   def index
     @yard_sales = YardSale.all
     respond_with(@yard_sales)
+  end
+
+  def user
+    @yard_sales = YardSale.where(user: @user.id)
   end
 
   def show
@@ -22,6 +29,7 @@ class YardSalesController < ApplicationController
 
   def create
     @yard_sale = YardSale.new(yard_sale_params)
+    @yard_sale.user = current_user # TODO validate that user is logged in
     @yard_sale.save
     respond_with(@yard_sale)
   end
@@ -39,6 +47,10 @@ class YardSalesController < ApplicationController
   private
     def set_yard_sale
       @yard_sale = YardSale.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     def yard_sale_params

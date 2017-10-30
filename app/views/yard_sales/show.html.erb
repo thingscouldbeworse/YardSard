@@ -22,12 +22,12 @@
 
 <p>
   <strong>Community:</strong>
-  <%= @yard_sale.community %>
+  <%= @yard_sale.community_id %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @yard_sale.user %>
+  <%= @yard_sale.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_yard_sale_path(@yard_sale) %> |
