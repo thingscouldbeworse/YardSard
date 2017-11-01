@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$enable_field = function(cb, div) {
+  var fields = div.find(':input');
+  if( cb.prop('checked') ) {
+    fields.removeProp('disabled');
+    div.show();
+  } else {
+    fields.prop('disabled', true);
+    div.hide();
+  }
+  console.log('fields: ',fields);
+  return cb.checked;
+};

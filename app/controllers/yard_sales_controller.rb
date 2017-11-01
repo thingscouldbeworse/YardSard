@@ -2,7 +2,7 @@ class YardSalesController < ApplicationController
   before_action :set_yard_sale, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: :user
 
-  layout('small-center', only: [:new, :edit])
+  layout 'small-center', only: [:new, :edit]
 
   respond_to :html
 
@@ -30,13 +30,20 @@ class YardSalesController < ApplicationController
   def create
     @yard_sale = YardSale.new(yard_sale_params)
     @yard_sale.user = current_user # TODO validate that user is logged in
-    @yard_sale.save
-    respond_with(@yard_sale)
+    if @yard_sale.valid?
+      @yard_sale.save
+      render(action: :show, layout: 'application') # TODO change layout
+    else
+      render(action: :new, layout: 'small-center')
+    end
   end
 
   def update
-    @yard_sale.update(yard_sale_params)
-    respond_with(@yard_sale)
+    if @yard_sale.update(yard_sale_params)
+      render(action: :show, layout: 'application') # TODO change layout
+    else
+      render(action: :new, layout: 'small-center')
+    end
   end
 
   def destroy

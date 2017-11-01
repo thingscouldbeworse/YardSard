@@ -12,20 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :start %><br>
+    <%= f.label :start, "Sale Starts at:" %><br>
     <%= f.datetime_select :start %>
   </div>
   <div class="field">
-    <%= f.label :end %><br>
+    <%= f.check_box :end_enable,
+      onclick: "$enable_field( $(this), $('#end_field'));" %>
+    <%= f.label :end_enable, "This is a Multiday Event" %>
+  </div>
+  <div class="field" id="end_field">
+    <%= f.label :end, "Sale Ends at:" %><br>
     <%= f.datetime_select :end %>
   </div>
+  <script>
+    $(document).on(
+      'page:load ready',
+      $enable_field(
+        $('input#yard_sale_end_enable'),
+        $('#end_field')
+      )
+    );
+  </script>
   <div class="field">
-    <%= f.label :zip %><br>
-    <%= f.number_field :zip %>
+    <%= f.label :address, "Address:" %><br>
+    <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.label :zip, "ZIP code:" %><br>
+    <%= f.number_field :zip %>
   </div>
   <div class="actions">
     <%= f.submit %>
