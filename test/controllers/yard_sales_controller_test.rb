@@ -18,7 +18,15 @@ class YardSalesControllerTest < ActionController::TestCase
 
   test "should create yard_sale" do
     assert_difference('YardSale.count') do
-      post :create, yard_sale: { address: @yard_sale.address, community_id: @yard_sale.community_id, end: @yard_sale.end, start: @yard_sale.start, user_id: @yard_sale.user_id, zip: @yard_sale.zip }
+      raise @yard_sale.user.inspect + User.all.inspect + YardSale.all.inspect
+      post :create, yard_sale: {
+        address: @yard_sale.address,
+        community_id: @yard_sale.community_id,
+        start: @yard_sale.start,
+        end: @yard_sale.end,
+        user_id: @yard_sale.user.id,
+        zip: @yard_sale.zip
+      }
     end
 
     assert_redirected_to yard_sale_path(assigns(:yard_sale))
@@ -35,8 +43,16 @@ class YardSalesControllerTest < ActionController::TestCase
   end
 
   test "should update yard_sale" do
-    patch :update, id: @yard_sale, yard_sale: { address: @yard_sale.address, community_id: @yard_sale.community_id, end: @yard_sale.end, start: @yard_sale.start, user_id: @yard_sale.user_id, zip: @yard_sale.zip }
-    assert_redirected_to yard_sale_path(assigns(:yard_sale))
+    patch :update, id: @yard_sale, yard_sale: {
+      address: @yard_sale.address,
+      community_id: @yard_sale.community_id,
+      start: @yard_sale.start,
+      end: @yard_sale.end,
+      user: @yard_sale.user,
+      zip: @yard_sale.zip
+    }
+    assert_response :success # yard sales now render(...) instead of redirect_to(...)
+    # assert_redirected_to yard_sale_path(assigns(:yard_sale))
   end
 
   test "should destroy yard_sale" do

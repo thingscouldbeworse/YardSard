@@ -1,17 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start: 2017-09-29 09:59:27
-  end: 2017-09-29 09:59:27
+  start: <%= (t = 12.hours.ago).to_s(:db) %>
+  end: <%= (t + 24.hours).to_s(:db) %>
   zip: 1
   address: MyString
   community_id: 
-  user_id: 
+  user: one
 
 two:
-  start: 2017-09-29 09:59:27
-  end: 2017-09-29 09:59:27
+  start: <%= (t - 12.hours).to_s(:db) %>
+  end: 
   zip: 1
   address: MyString
   community_id: 
-  user_id: 
+  user: two
+
