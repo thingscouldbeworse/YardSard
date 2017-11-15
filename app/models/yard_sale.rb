@@ -2,18 +2,23 @@ class YardSale < ActiveRecord::Base
   #belongs_to :community # TODO: bring this command back
   belongs_to :user
 
-  validate :start,     presence: true
-  validate :zip,       numericality: { greater_than: 0, less_than: 100_000, only_integer: true }
-  validate :address,   presence: true, length: { minimum: 1 }
-  validate :user,      presence: true
+  validates :start,     presence: true
+  validates :zip,       numericality: { greater_than: 0, less_than: 100_000, only_integer: true }
+  validates :address,   presence: true
+  validates :user,      presence: true
+
   validate :end_cannot_be_before_start
-  validate :end_cannot_be_in_the_past, only: :create
+  validate :end_cannot_be_in_the_past, if: :end_changed?
 
   alias_attribute :start_time, :start
   alias_attribute :end_time, :end
 
+  def end_enable=(val)
+    @checkbox = val
+  end
+
   def end_enable
-    false
+    @checkbox || false
   end
 
   def start_txt

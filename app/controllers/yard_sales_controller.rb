@@ -61,6 +61,6 @@ class YardSalesController < ApplicationController
     end
 
     def yard_sale_params
-      params.require(:yard_sale).permit(:start, :end, :zip, :address, :community_id, :user_id)
+      params.require(:yard_sale).permit(:start, :end_enable, :end, :zip, :address, :community_id, :user_id)
     end
 end
