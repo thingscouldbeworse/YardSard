@@ -18,7 +18,7 @@ class YardSale < ActiveRecord::Base
   end
 
   def end_enable
-    @checkbox || false
+    @checkbox || !end_time.nil? || false
   end
 
   def start_txt
