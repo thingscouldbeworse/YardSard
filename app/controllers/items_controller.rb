@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+  layout 'small-center', only: [:new, :edit]
+
   respond_to :html
 
   def index
@@ -22,13 +24,20 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    respond_with(@item)
+    if @item.valid?
+      @item.save
+      render(action: :show, layout: 'application') # TODO change layout
+    else
+      render(action: :new, layout: 'small-center')
+    end
   end
 
   def update
-    @item.update(item_params)
-    respond_with(@item)
+    if @item.update(yard_sale_params)
+      render(action: :show, layout: 'application') # TODO change layout
+    else
+      render(action: :new, layout: 'small-center')
+    end
   end
 
   def destroy

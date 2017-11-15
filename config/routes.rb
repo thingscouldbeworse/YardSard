@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :items
+
   get 'yard_sales/user/:user_id', to: 'yard_sales#user', as: 'user_yard_sales'
   resources :yard_sales
-  
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

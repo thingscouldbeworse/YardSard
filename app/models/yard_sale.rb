@@ -1,6 +1,7 @@
 class YardSale < ActiveRecord::Base
   #belongs_to :community # TODO: bring this command back
   belongs_to :user
+  has_many :items, inverse_of: :yard_sale
 
   validates :start,     presence: true
   validates :zip,       numericality: { greater_than: 0, less_than: 100_000, only_integer: true }
@@ -19,6 +20,10 @@ class YardSale < ActiveRecord::Base
 
   def end_enable
     @checkbox || !end_time.nil? || false
+  end
+
+  def select_description
+    "#{address} (#{start_time.strftime('%F')})"
   end
 
   def start_txt

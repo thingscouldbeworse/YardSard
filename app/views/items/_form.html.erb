@@ -13,27 +13,31 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, autocomplete: "off" %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, autocomplete: "off", class: "wide" %>
   </div>
+  <%# TODO need to outsource this styling %>
+  <img id="url_pic_replace" style="max-width: 100%;"></img>
+
   <div class="field">
-    <%= f.label :pic %><br>
-    <%= f.text_field :pic %>
+    <%= f.label :pic, "Item Picture (URL)" %><br />
+    <%= f.text_field :pic, onchange: "$set_pic_src( this, '#url_pic_replace')", autocomplete: "off", class: "wide" %>
   </div>
   <div class="field">
     <%= f.label :price_cents %><br>
-    <%= f.number_field :price_cents %>
+    <%= f.number_field :price_cents, autocomplete: "off" %>
   </div>
   <div class="field">
     <%= f.label :ad_price_cents %><br>
-    <%= f.number_field :ad_price_cents %>
+    <%= f.number_field :ad_price_cents, autocomplete: "off" %>
   </div>
   <div class="field">
     <%= f.label :yard_sale_id %><br>
-    <%= f.text_field :yard_sale_id %>
+    <%# f.text_field :yard_sale_id %>
+    <%= f.select :yard_sale_id, current_user.yard_sales.map { |ys| [ys.select_description, ys.id] } %> <%# TODO: make these id's more descriptive, yeah? %>
   </div>
   <div class="actions">
     <%= f.submit %>
