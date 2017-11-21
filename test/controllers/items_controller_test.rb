@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ItemsControllerTest < ActionController::TestCase
   setup do
+    sign_in users(:one)
     @item = items(:one)
   end
 
@@ -21,7 +22,7 @@ class ItemsControllerTest < ActionController::TestCase
       post :create, item: { ad_price_cents: @item.ad_price_cents, description: @item.description, pic: @item.pic, price_cents: @item.price_cents, title: @item.title, yard_sale_id: @item.yard_sale_id }
     end
 
-    assert_redirected_to item_path(assigns(:item))
+    assert_response :success
   end
 
   test "should show item" do
@@ -36,7 +37,7 @@ class ItemsControllerTest < ActionController::TestCase
 
   test "should update item" do
     patch :update, id: @item, item: { ad_price_cents: @item.ad_price_cents, description: @item.description, pic: @item.pic, price_cents: @item.price_cents, title: @item.title, yard_sale_id: @item.yard_sale_id }
-    assert_redirected_to item_path(assigns(:item))
+    assert_response :success
   end
 
   test "should destroy item" do

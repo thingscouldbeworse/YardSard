@@ -19,8 +19,8 @@
         <td><%= item.ad_price_txt %></td>
         <td><%= link_to item.yard_sale.user.name, yard_sale_path(item.yard_sale) %></td>
         <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) if can?(:edit,item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } if can?(:destroy,item) %></td>
       </tr>
     <% end %>
   </tbody>

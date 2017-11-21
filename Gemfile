@@ -38,3 +38,6 @@ gem 'spring',        group: :development
 # YARD SARD gems
 # Use devise for some killer user authentication / auto-table handling
 gem 'devise'
+# Use cancancan for some quality user permissions handling.
+gem 'cancancan'
+

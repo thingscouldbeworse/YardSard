@@ -28,7 +28,7 @@
 
 <br/>
 
-<%= link_to 'Edit', edit_yard_sale_path(@yard_sale) %> |
+<%= link_to 'Edit', edit_yard_sale_path(@yard_sale) if can?(:edit, @yard_sale) %> |
 <%= link_to 'Delete this Yard Sale', @yard_sale, method: :delete,
-            data: { confirm: 'Are you sure? This is permanent and will delete the items in this sale, too!' } %>
+            data: { confirm: 'Are you sure? This is permanent and will delete the items in this sale, too!' } if can?(:destroy, @yard_sale) %>
 <%= link_to 'Back', yard_sales_path %>

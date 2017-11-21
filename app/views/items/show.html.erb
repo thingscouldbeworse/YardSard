@@ -10,12 +10,12 @@
 
 <p>
   <strong>Price:</strong>
-  $<%= @item.price %>
+  <%= @item.price_txt %>
 </p>
 
 <p>
   <strong>Advertise on YardSard for only:</strong>
-  $<%= @item.ad_price %>
+  <%= @item.ad_price_txt || "(not yet available)" %>
 </p>
 
 <p>
@@ -23,5 +23,5 @@
   <%= link_to @item.yard_sale.select_description, yard_sale_path(@item.yard_sale_id) %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Edit', edit_item_path(@item) if can?(:edit, @item) %> |
 <%= link_to 'Back', items_path %>
