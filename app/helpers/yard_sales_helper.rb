@@ -5,7 +5,7 @@ module YardSalesHelper
         "#{ys.start.strftime('%b %-d, %Y, from %-I:%M %p')}
         to #{ys.end.strftime('%-I:%M %p')}"
       else
-        "From #{ys.start.strftime('%b %-d, %Y at %-I:%M %p')} 
+        "#{ys.start.strftime('%b %-d, %Y at %-I:%M %p')} 
         to #{ys.end.strftime('%b %-d, %Y at %-I:%M %p')}"
       end
     else

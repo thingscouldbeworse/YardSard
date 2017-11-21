@@ -1,0 +1,26 @@
+<table class="standard">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Address</th>
+      <th>Community</th>
+      <% unless @user %><th>User</th><% end %>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @yard_sales.each do |yard_sale| %>
+      <tr class="<%= cycle('odd','even') %>">
+        <td><%= pretty_print_time(yard_sale) %></td>
+        <td><%= yard_sale.address %>, <%= yard_sale.zip %></td>
+        <td><%= yard_sale.community_id || "(none)" %></td>
+        <% unless @user %>
+          <td><%= link_to yard_sale.user.name, user_yard_sales_path(yard_sale.user) %></td>
+        <% end %>
+        <td><%= link_to 'View Details', yard_sale %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -7,6 +7,14 @@ class Item < ActiveRecord::Base
   validates :price_cents, presence: true
   validates :yard_sale,   presence: true
 
+  def price_txt
+    sprintf("$%0.02f", price)
+  end
+
+  def ad_price_txt
+    ad_price_cents ? sprintf("$%0.02f", ad_price) : nil
+  end
+
   def price
     price_cents.to_i / 100.0
   end

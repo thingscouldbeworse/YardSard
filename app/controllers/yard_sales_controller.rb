@@ -13,6 +13,7 @@ class YardSalesController < ApplicationController
 
   def user
     @yard_sales = YardSale.where(user: @user.id)
+    render(action: :index)
   end
 
   def show
@@ -33,6 +34,7 @@ class YardSalesController < ApplicationController
     @yard_sale.user = current_user # TODO validate that user is logged in
     if @yard_sale.valid?
       @yard_sale.save
+      @items = []
       render(action: :show, layout: 'application') # TODO change layout
     else
       render(action: :new, layout: 'small-center')
@@ -41,6 +43,7 @@ class YardSalesController < ApplicationController
 
   def update
     if @yard_sale.update(yard_sale_params)
+      @items = @yard_sale.items
       render(action: :show, layout: 'application') # TODO change layout
     else
       render(action: :new, layout: 'small-center')
