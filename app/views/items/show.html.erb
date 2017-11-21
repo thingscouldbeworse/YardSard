@@ -1,33 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
+<h1><%= @item.title %></h1>
+
+<%= image_tag @item.pic, style: "max-width:100%;" %>
 
 <p>
-  <strong>Description:</strong>
   <%= @item.description %>
 </p>
 
 <p>
-  <strong>Pic:</strong>
-  <%= @item.pic %>
+  <strong>Price:</strong>
+  $<%= @item.price %>
 </p>
 
 <p>
-  <strong>Price cents:</strong>
-  <%= @item.price_cents %>
+  <strong>Advertise on YardSard for only:</strong>
+  $<%= @item.ad_price %>
 </p>
 
 <p>
-  <strong>Ad price cents:</strong>
-  <%= @item.ad_price_cents %>
-</p>
-
-<p>
-  <strong>Yard sale:</strong>
-  <%= @item.yard_sale %>
+  <strong>Available at:</strong>
+  <%= link_to @item.yard_sale.select_description, yard_sale_path(@item.yard_sale_id) %>
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |

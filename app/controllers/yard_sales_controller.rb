@@ -16,6 +16,7 @@ class YardSalesController < ApplicationController
   end
 
   def show
+    @items = @yard_sale.items
     respond_with(@yard_sale)
   end
 

@@ -8,10 +8,10 @@ class Item < ActiveRecord::Base
   validates :yard_sale,   presence: true
 
   def price
-    price_cents / 100.0
+    price_cents.to_i / 100.0
   end
 
   def ad_price
-    ad_price_cents / 100.0
+    ad_price_cents.to_i / 100.0
   end
 end

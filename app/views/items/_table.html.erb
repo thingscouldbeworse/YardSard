@@ -1,0 +1,28 @@
+<table class="standard">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Price cents</th>
+      <th>Ad price cents</th>
+      <th>Yard sale</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= image_tag item.pic, style: "max-width: 100px;" %></td>
+        <td><%= item.title %></td>
+        <td><%= item.price_cents %></td>
+        <td><%= item.ad_price_cents %></td>
+        <td><%= link_to 'Yard Sale', yard_sale_path(item.yard_sale) %></td>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

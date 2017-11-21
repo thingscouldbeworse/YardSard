@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-  layout 'small-center', only: [:new, :edit]
+  layout 'small-center', only: [:new, :create, :edit, :update, :show]
 
   respond_to :html
 
@@ -26,17 +26,17 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.valid?
       @item.save
-      render(action: :show, layout: 'application') # TODO change layout
+      render(action: :show)
     else
-      render(action: :new, layout: 'small-center')
+      render(action: :new)
     end
   end
 
   def update
-    if @item.update(yard_sale_params)
-      render(action: :show, layout: 'application') # TODO change layout
+    if @item.update(item_params)
+      render(action: :show)
     else
-      render(action: :new, layout: 'small-center')
+      render(action: :new)
     end
   end
 

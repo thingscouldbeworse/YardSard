@@ -3,9 +3,7 @@
 <table class="standard">
   <thead>
     <tr>
-      <th>Start</th>
-      <th>End</th>
-      <th>Zip</th>
+      <th>Time</th>
       <th>Address</th>
       <th>Community</th>
       <th>User</th>
@@ -16,10 +14,8 @@
   <tbody>
     <% @yard_sales.each do |yard_sale| %>
       <tr>
-        <td><%= yard_sale.start_txt %></td>
-        <td><%= yard_sale.end_txt %></td>
-        <td><%= yard_sale.zip %></td>
-        <td><%= yard_sale.address %></td>
+        <td><%= pretty_print_time(yard_sale) %></td>
+        <td><%= yard_sale.address %>, <%= yard_sale.zip %></td>
         <td><%= yard_sale.community_id %></td>
         <td><%= link_to yard_sale.user.name, user_yard_sales_path(yard_sale.user) %></td>
         <td><%= link_to 'Show', yard_sale %></td>

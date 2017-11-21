@@ -1,14 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Start:</strong>
-  <%= @yard_sale.start %>
-</p>
+<h1>Yard Sale (<%= pluralize(@yard_sale.items.count, 'item') %>)</h1>
 
-<p>
-  <strong>End:</strong>
-  <%= @yard_sale.end %>
-</p>
+<h2><%= pretty_print_time(@yard_sale) %></h2>
 
 <p>
   <strong>Zip:</strong>
@@ -29,6 +23,10 @@
   <strong>User:</strong>
   <%= @yard_sale.user.name %>
 </p>
+
+<%= render(partial: 'items/table') %>
+
+<br/>
 
 <%= link_to 'Edit', edit_yard_sale_path(@yard_sale) %> |
 <%= link_to 'Back', yard_sales_path %>
