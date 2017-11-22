@@ -10,6 +10,11 @@
 <body>
 <header>
   <%= link_to root_path do %><h1 id='site-title'>Yard Sard</h1><% end %>
+  &emsp;
+  <%= form_tag( search_page_path, method: :post ) do %>
+    <%= text_field_tag :q, nil, placeholder: 'Try a ZIP code or an item description', style: 'width:220px;', autocomplete: 'off' %>
+    <%= submit_tag :search %>
+  <% end %>
   <div class='right-side'>
     <% if user_signed_in? %>
       <h2><%= link_to "My Sales", user_yard_sales_path(current_user) %> |

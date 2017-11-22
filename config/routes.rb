@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'search', to: 'pages#search', as: 'search_page'
+
   resources :items
 
   get 'yard_sales/user/:user_id', to: 'yard_sales#user', as: 'user_yard_sales'
