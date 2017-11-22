@@ -12,3 +12,8 @@ two:
   name: Test 2
   email: email2@test.com
 
+admin:
+  name: admin
+  email: admin@email.com
+  is_manager: true
+

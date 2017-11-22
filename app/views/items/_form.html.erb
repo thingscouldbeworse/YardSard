@@ -31,10 +31,6 @@
     <%= f.number_field :price_cents, autocomplete: "off" %>
   </div>
   <div class="field">
-    <%= f.label :ad_price_cents %><br>
-    <%= f.number_field :ad_price_cents, autocomplete: "off" %>
-  </div>
-  <div class="field">
     <%= f.label :yard_sale_id, "Which yard sale does this item belong to?" %><br>
     <%= f.select :yard_sale_id, current_user.yard_sales.map { |ys| [ys.select_description, ys.id] } %> <%# TODO: make these id's more descriptive, yeah? %>
   </div>

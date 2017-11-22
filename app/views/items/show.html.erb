@@ -24,4 +24,5 @@
 </p>
 
 <%= link_to 'Edit', edit_item_path(@item) if can?(:edit, @item) %> |
+<%= link_to 'Edit Advertisement Prices', edit_ad_item_path(@item) if can?(:edit_ad_prices, @item) %> |
 <%= link_to 'Back', items_path %>

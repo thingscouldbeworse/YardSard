@@ -21,8 +21,8 @@ class Ability
 
     # things only managers can do
     if user.is_manager?
+      can :manage, User
       can :edit_ad_prices, Item
-      can :edit_management, User
     end
     # Define abilities for the passed in user here. For example:
     #

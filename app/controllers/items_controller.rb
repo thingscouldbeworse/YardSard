@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_ad, :update_ad]
 
-  layout 'small-center', only: [:new, :create, :edit, :update, :show]
+  layout 'small-center', only: [:new, :create, :edit, :update, :show, :edit_ad, :update_ad]
 
   respond_to :html
 
@@ -22,6 +22,9 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def edit_ad
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.valid?
@@ -33,6 +36,14 @@ class ItemsController < ApplicationController
   end
 
   def update
+    if @item.update(item_params)
+      render(action: :show)
+    else
+      render(action: :new)
+    end
+  end
+
+  def update_ad
     if @item.update(item_params)
       render(action: :show)
     else

@@ -2,10 +2,19 @@ Rails.application.routes.draw do
 
   post 'search', to: 'pages#search', as: 'search_page'
 
-  resources :items
+  resources :items do
+    member do
+      get :edit_ad
+      post :update_ad
+    end
+  end
 
   get 'yard_sales/user/:user_id', to: 'yard_sales#user', as: 'user_yard_sales'
   resources :yard_sales
+
+  scope "/admin" do
+    resources :users
+  end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
