@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_item, only: [:show, :edit, :update, :destroy, :edit_ad, :update_ad]
 
   layout 'small-center', only: [:new, :create, :edit, :update, :show, :edit_ad, :update_ad]

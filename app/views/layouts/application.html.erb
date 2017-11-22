@@ -17,7 +17,7 @@
   <% end %>
   <div class='right-side'>
     <% if user_signed_in? %>
-      <h2><%= link_to "Manage Users", users_path %>
+      <h2><%= link_to "Manage Users", users_path if can? :manage, User %>
         &emsp;
         <%= link_to "My Sales", user_yard_sales_path(current_user) %> |
         <%= link_to "Add an Item", new_item_path %>

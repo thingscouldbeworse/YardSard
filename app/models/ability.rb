@@ -4,16 +4,13 @@ class Ability
   def initialize(user)
     user ||= User.new
     # things anyone can do
-    can :manage, User do |u|
-      u.id == user.id
-    end
     can [:create, :read], Item
     # only if this user owns the item
     can [:update, :destroy], Item do |item|
       item.yard_sale.user == user
     end
  
-    can [:create, :read], YardSale
+    can [:create, :read, :user], YardSale
     # only if this user owns it
     can [:update, :destroy], YardSale do |ys|
       ys.user == user
