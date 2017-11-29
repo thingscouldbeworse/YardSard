@@ -17,7 +17,7 @@
   <% end %>
   <div class='right-side'>
     <% if user_signed_in? %>
-      <h2><%= link_to "Manage Users", users_path if can? :manage, User %>
+      <h4><%= link_to "Manage Users", users_path if can? :manage, User %>
         &emsp;
         <%= link_to "My Sales", user_yard_sales_path(current_user) %> |
         <%= link_to "Add an Item", new_item_path %>
@@ -29,7 +29,7 @@
         <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
       </h2>
     <% else %>
-      <h2><%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></h2>
+      <h4><%= link_to "Sign Up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></h2>
     <% end %>
   </div>
 </header>
