@@ -12,6 +12,11 @@ class YardSalesController < ApplicationController
     respond_with(@yard_sales)
   end
 
+  def history(id)
+    @yard_sales = YardSale.id = id
+    respond_with(@yard_sales)
+  end
+
   def user
     @yard_sales = YardSale.where(user: @user.id)
     render(action: :index)
@@ -32,11 +37,12 @@ class YardSalesController < ApplicationController
 
   def create
     @yard_sale = YardSale.new(yard_sale_params)
-    # set to active
+    @yard_sale.toggle_active
     @yard_sale.user = current_user # TODO validate that user is logged in
     if @yard_sale.valid?
       @yard_sale.save
-      # set origin to @yard_sale.id, then save! again
+      @yard_sale.origin_id = @yard_sale.id
+      @yard_sale.save!
       @items = []
       render(action: :show, layout: 'application') # TODO change layout
     else
@@ -60,6 +66,10 @@ class YardSalesController < ApplicationController
   def destroy
     @yard_sale.destroy
     respond_with(@yard_sale)
+  end
+
+  def history
+
   end
 
   private
