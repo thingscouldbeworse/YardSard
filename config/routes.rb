@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   get 'yard_sales/user/:user_id', to: 'yard_sales#user', as: 'user_yard_sales'
-  resources :yard_sales
+  resources :yard_sales do
+    # KIRK ADD IT HERE
+  end
 
   scope "/admin" do
     resources :users

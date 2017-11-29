@@ -32,9 +32,11 @@ class YardSalesController < ApplicationController
 
   def create
     @yard_sale = YardSale.new(yard_sale_params)
+    # set to active
     @yard_sale.user = current_user # TODO validate that user is logged in
     if @yard_sale.valid?
       @yard_sale.save
+      # set origin to @yard_sale.id, then save! again
       @items = []
       render(action: :show, layout: 'application') # TODO change layout
     else
@@ -43,7 +45,10 @@ class YardSalesController < ApplicationController
   end
 
   def update
-    if @yard_sale.update(yard_sale_params)
+    if @yard_sale.valid?
+      old_yard_sale = @yard_sale.clone.save!
+      # set old yard sale not true
+      @yard_sale.update(yard_sale_params)
       @items = @yard_sale.items
       render(action: :show, layout: 'application') # TODO change layout
     else
