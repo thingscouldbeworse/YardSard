@@ -35,6 +35,10 @@ class YardSale < ActiveRecord::Base
   def end_txt
     end_time ? end_time.strftime("%F<br/>%I:%M %p").html_safe : ""
   end
+  
+  def toggle_active
+    update active: !active
+  end
 
   private
   

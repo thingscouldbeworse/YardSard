@@ -46,8 +46,9 @@ class YardSalesController < ApplicationController
 
   def update
     if @yard_sale.valid?
-      old_yard_sale = @yard_sale.clone.save!
-      # set old yard sale not true
+      old_yard_sale = @yard_sale.dup
+      old_yard_sale.toggle_active
+      old_yard_sale.save!
       @yard_sale.update(yard_sale_params)
       @items = @yard_sale.items
       render(action: :show, layout: 'application') # TODO change layout
