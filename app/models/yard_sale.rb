@@ -1,9 +1,7 @@
 class YardSale < ActiveRecord::Base
   #belongs_to :community # TODO: bring this command back
   belongs_to :user
-  belongs_to :origin, class_name: 'YardSale', foreign_key: 'origin_id'
-  has_many :histories, foreign_key: 'origin_id'
-  has_many :items, inverse_of: :yard_sale
+  has_many :items, dependent: :destroy, inverse_of: :yard_sale
 
   validates :start,     presence: true
   validates :zip,       numericality: { greater_than: 0, less_than: 100_000, only_integer: true }
