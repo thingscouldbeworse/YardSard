@@ -5,6 +5,9 @@
       <th>Address</th>
       <th>Community</th>
       <% unless @user %><th>User</th><% end %>
+      <% if can?(:read, :ad_revenue) %>
+        <th>Revenue</th>
+      <% end %>
       <th></th>
     </tr>
   </thead>
@@ -17,6 +20,9 @@
         <td><%= yard_sale.community_id || "(none)" %></td>
         <% unless @user %>
           <td><%= link_to yard_sale.user.name, user_yard_sales_path(yard_sale.user) %></td>
+        <% end %>
+        <% if can?(:read, :ad_revenue) %>
+          <th><%= yard_sale.ad_income %>/<%= yard_sale.total_ad_cost %></th>
         <% end %>
         <td><%= link_to 'View Details', yard_sale %></td>
       </tr>

@@ -8,7 +8,7 @@ class YardSalesController < ApplicationController
   respond_to :html
 
   def index
-    @yard_sales = YardSale.all
+    @yard_sales = current_user.is_manager? ? YardSale.all : YardSale.upcoming
     respond_with(@yard_sales)
   end
 

@@ -13,10 +13,12 @@
   <%= @item.price_txt %>
 </p>
 
+<% if can?(:promote, @item) %>
 <p>
-  <strong>Advertise on YardSard for only:</strong>
+<strong><%= link_to "Advertise on YardSard", promote_item_path(@item), method: :post %> for only:</strong>
   <%= @item.ad_price_txt || "(not yet available)" %>
 </p>
+<% end %>
 
 <p>
   <strong>Available at:</strong>

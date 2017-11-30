@@ -11,6 +11,8 @@ class YardSale < ActiveRecord::Base
   validate :end_cannot_be_before_start
   validate :end_cannot_be_in_the_past, if: :end_changed?
 
+  scope :upcoming, -> { where('(start > ? AND end IS NULL) OR end > ?', Time.now.beginning_of_day, Time.now) }
+
   alias_attribute :start_time, :start
   alias_attribute :end_time, :end
 
@@ -32,6 +34,16 @@ class YardSale < ActiveRecord::Base
 
   def end_txt
     end_time ? end_time.strftime("%F<br/>%I:%M %p").html_safe : ""
+  end
+
+  def ad_income
+    cents = Item.where(yard_sale: id, promoted: true).sum(:ad_price_cents)
+    sprintf("$%0.02f", cents / 100.0)
+  end
+
+  def total_ad_cost
+    cents = Item.where(yard_sale: id).sum(:ad_price_cents)
+    sprintf("$%0.02f", cents / 100.0)
   end
 
   private

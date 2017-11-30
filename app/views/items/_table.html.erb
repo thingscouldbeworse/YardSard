@@ -16,7 +16,7 @@
         <td><%= image_tag item.pic, style: "max-width: 100px;" %></td>
         <td><%= item.title %></td>
         <td><%= item.price_txt %></td>
-        <td><%= item.ad_price_txt %></td>
+        <td><%= item.ad_price_txt if can?(:see_ad_price, item) %></td>
         <td><%= link_to item.yard_sale.user.name, yard_sale_path(item.yard_sale) %></td>
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) if can?(:edit,item) %></td>

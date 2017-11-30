@@ -1,5 +1,5 @@
 <% content_for(:main) do %>
-  <div id="small-center">
+  <div id="small-center" class="<%= @small_center_class.join(' ') %>">
     <%= yield %>
   </div>
 <% end %>

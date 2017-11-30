@@ -6,7 +6,7 @@ class Ability
     # things anyone can do
     can [:create, :read], Item
     # only if this user owns the item
-    can [:update, :destroy], Item do |item|
+    can [:update, :destroy, :see_ad_price, :promote], Item do |item|
       item.yard_sale.user == user
     end
  
@@ -19,7 +19,8 @@ class Ability
     # things only managers can do
     if user.is_manager?
       can :manage, User
-      can :edit_ad_prices, Item
+      can [:edit_ad_prices, :see_ad_price], Item
+      can :read, :ad_revenue
     end
     # Define abilities for the passed in user here. For example:
     #

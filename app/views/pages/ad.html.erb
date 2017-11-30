@@ -1,0 +1,13 @@
+<h1>Ad Revenue</h1>
+
+<h3>This week</h3>
+
+<%= @items = @this_week; render(partial: 'items/table') %>
+
+<h3>This month</h3>
+
+<%= @items = @this_month; render(partial: 'items/table') %>
+
+<h3>This year</h3>
+
+<%= @items = @this_year; render(partial: 'items/table') %>

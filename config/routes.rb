@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
 
   post 'search', to: 'pages#search', as: 'search_page'
+  get  'ads',    to: 'pages#ad', as: 'ad_revenue'
 
   resources :items do
     member do
       get :edit_ad
       post :update_ad
+      post :promote
     end
   end
 
   get 'yard_sales/user/:user_id', to: 'yard_sales#user', as: 'user_yard_sales'
-  resources :yard_sales do
-    # KIRK ADD IT HERE
-  end
+  resources :yard_sales
 
   scope "/admin" do
     resources :users

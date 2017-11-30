@@ -7,6 +7,8 @@ class Item < ActiveRecord::Base
   validates :price_cents, presence: true
   validates :yard_sale,   presence: true
 
+  scope :promoted, -> { where(promoted: true) }
+
   def price_txt
     sprintf("$%0.02f", price)
   end
